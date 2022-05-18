@@ -1,13 +1,14 @@
-import express from 'express';
+import express from 'express'
 
-const app = express();
-
-const port = 3000;
+const app = express()
+const port = 3000
 
 app.get('/', (req, res) => {
-    res.send('init');
+  const params = new URLSearchParams(location.search);
+  
+  res.send('');
 })
 
-app.listen(port);
+app.listen(port)
 
-export default app;
+export default app
