@@ -2,6 +2,7 @@
 image processing nodeJs app built upon sharp module
 
 main entry point is /api not /
+*Example:- localhost/3000/api
 
 Welcome to imgProc an api for resizing images. 
 query parameters to use: -img -w -h 
