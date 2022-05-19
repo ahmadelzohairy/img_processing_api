@@ -1,5 +1,6 @@
 # img_processing_api
 image processing nodeJs app built upon sharp module
+
 main entry point is /api not /
 
 Welcome to imgProc an api for resizing images. 
