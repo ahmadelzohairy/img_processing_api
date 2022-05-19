@@ -15,7 +15,11 @@ query parameters to use:
 Scripts:
 
 -test: npm run test
+
 -start: npm run start
+
 -build: npm run build
+
 -eslint: npm run lint
+
 -prettier: npm run format
