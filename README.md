@@ -13,6 +13,7 @@ query parameters to use:
 *Example:- localhost/3000/api/ingProc?image=fjord&w=200&h=200
 
 Scripts:
+
 -test: npm run test
 -start: npm run start
 -build: npm run build
