@@ -36,7 +36,6 @@ imgProc.get(
 
     //apply resizing
     await resize(imgPath, outputImg, w, h)
-    // if i did not use setTimeout it returns the path to processed image but before the resize function create the processes image, i do not know why!!
 
     res.sendFile(outputImg)
   }
