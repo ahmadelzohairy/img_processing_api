@@ -10,7 +10,7 @@ query parameters to use:
 -w 
 -h 
 
-*Example:- localhost/3000/api/ingProc?image=fjord&w=200&h=200
+*Example:- localhost:3000/api/imgProc?image=fjord&w=200&h=200
 
 Scripts:
 
