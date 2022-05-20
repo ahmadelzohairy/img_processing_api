@@ -1,8 +1,8 @@
-import express, {  Request, Response } from 'express'
+import express, { Request, Response } from 'express'
 import imgProc from './api/imgProc'
 const routes = express.Router()
 
-routes.get('/', (_req: Request, res: Response) => {
+routes.get('/', (_req: Request, res: Response): void => {
   res.send(`Welcome to imgProc 
     an api for resizing images.
     query parameters to use:

@@ -3,7 +3,7 @@ import path from 'path'
 import fs from 'fs'
 
 describe('test resize function', () => {
-  it('successufally resizing provided image', () => {
+  it('successufally resizing provided image', async () => {
     const imgPath = path.join(
       path.resolve('./'),
       `statics/images/encenadaport.jpg`
@@ -12,10 +12,7 @@ describe('test resize function', () => {
       path.resolve('./'),
       `statics/images/thumbs/encenadaport.jpg`
     )
-    resize(imgPath, imgOut, 200, 200)
-    // same problem here as in imgProc endpoint
-    setTimeout(() => {
-      expect(fs.existsSync(imgOut)).toBeTrue()
-    }, 100)
+    await resize(imgPath, imgOut, 200, 200)
+    expect(fs.existsSync(imgOut)).toBeTrue()
   })
 })
