@@ -1,15 +1,16 @@
-import express from 'express'
-import { existsSync } from 'fs'
+import express, {  Request, Response } from 'express'
 import path from 'path'
-import sharp from 'sharp'
 const imgProc = express.Router()
+import fsExists from 'fs.promises.exists'
+// import { existsSync } from 'fs';
+import resize from '../../utilities/utilities'
 
-imgProc.get('/', (req, res) => {
-  const params = req.query
+imgProc.get('/', async (_req: Request, res: Response) => {
+  const params = _req.query
   const img = params.image
   const w = parseInt(params.w as string)
   const h = parseInt(params.h as string)
-  //validate image
+  //validate image provided
   if (img == undefined) {
     return res.status(400).send('Please provide Image for processing!!')
   }
@@ -19,7 +20,7 @@ imgProc.get('/', (req, res) => {
     `statics/images/thumbs/${img}_${w}_${h}.jpg`
   )
   //check if image exist
-  if (!existsSync(imgPath)) {
+  if (!(await fsExists(imgPath))) {
     return res.send('Please provide valid image!')
   }
   //vlidate width and height
@@ -27,20 +28,16 @@ imgProc.get('/', (req, res) => {
     return res.send('please provide valid parameters!!')
   }
   //check if image was cashed
-  if (existsSync(outputImg)) {
+  if (await fsExists(outputImg)) {
     return res.sendFile(outputImg)
   }
 
-  sharp(imgPath)
-    .resize(w, h)
-    .toFile(outputImg, err => {
-      if (err) {
-        return res.send(err)
-      } else {
-        return res.sendFile(outputImg)
-      }
-    })
-  console.log(imgPath)
+  //apply resizing
+  resize(imgPath, outputImg, w, h)
+  // if i did not use setTimeout it returns the path to processed image but before the resize function create the processes image, i do not know why!!
+  setTimeout(() => {
+    res.sendFile(outputImg)
+  }, 100)
 })
 
 export default imgProc
